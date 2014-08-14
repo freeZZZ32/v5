@@ -1,0 +1,95 @@
+@auto[]
+	^include[/config.p]
+	^include[$tmpl_path/config.cfg]
+	^if(-f "/config_pay.p"){
+	^include[/config_pay.p]
+	}
+	$connect_string[mysql://${sql_login}:${sql_pass}@[/var/run/mysqld/mysqld.sock]/${sql_table}?charset=cp1251]
+
+
+$servername[http://${env:SERVER_NAME}]
+
+
+^use[/siteclass/catalog.p]
+
+
+$key_phrase[]
+
+
+^connect[$connect_string]{
+	$gs[^table::sql{select * from global_setting where type='1'}]
+	^if($gs){
+	$gs[
+		^gs.menu{
+			^switch[$gs.name]{
+#				^case[phone_code]{$.phone_code[$gs.value]}
+#				^case[phone_number]{$.phone_number[$gs.value]}
+#				^case[contact1]{$.contact1[$gs.value]}
+#				^case[contact2]{$.contact2[$gs.value]}
+#				^case[contact3]{$.contact3[$gs.value]}
+#				^case[contact4]{$.contact4[$gs.value]}
+#				^case[bik]{$.bik[$gs.value]}
+				^case[name_company]{$.name[$gs.value]}
+#				^case[deviz]{$.deviz[$gs.value]}
+#				^case[vid_deyatel]{$.vid_deyatel[$gs.value]}
+				^case[DEFAULT]{}
+			}
+		}
+	]
+	}
+
+	$gs_tm[^table::sql{select id from menus where visible='1' and id_menu='a'}]
+	$gs_lm[^table::sql{select id from menus where visible='1' and id_menu='b'}]
+
+	$gs_head[^table::sql{select id from menus where visible='1' and id='6' and id_menu='c'}]
+
+	$gs_lb[^table::sql{select id from menus where visible='1' and id='3' and id_menu='c'}]
+	$gs_rb[^table::sql{select id from menus where visible='1' and id='4' and id_menu='c'}]
+	$gs_tb[^table::sql{select id from menus where visible='1' and id='5' and id_menu='c'}]
+
+	$gs_cattov[^table::sql{select value from global_setting where name='showcattov'}]
+	$gs_cattovhead[^string:sql{select value from global_setting where name='cattovhead'}[$.default[]]]
+
+	$gs_news[^int:sql{select value from global_setting where name='colvolastnews'}[$.default(0)]]
+	$gs_newshead[^string:sql{select value from global_setting where name='headlastnews'}[$.default[]]]
+
+	$gs_otzyv(^int:sql{select value from global_setting where name='kolvolastotzyv'}[$.default(0)])
+	$gs_otzyvhead[^string:sql{select value from global_setting where name='headlastotzyv'}[$.default[]]]
+
+	$gs_feed[^table::sql{select value from global_setting where name='feedback'}]
+	$gs_auth[^table::sql{select value from global_setting where name='auth'}]
+	$gs_cart[^table::sql{select value from global_setting where name='basket'}]
+	$gs_search[^table::sql{select value from global_setting where name='search'}]
+	
+	
+	$gs_bcat[^table::sql{select id from cmc_block where nameblock='bcatalog'}]
+
+	$gs_margin(230)
+	
+	
+
+}
+
+@main[]
+$auth[^auth::init[]]
+#^use[/class/news_template.p]
+^use[/class/controlimage.p]
+
+
+^connect[$connect_string]{
+
+	^if($form:type eq 'forma'){
+	^menu_tabs[$form:type_h_menu]|
+	<link href="$tmpl_path/css/mnu.css" rel="stylesheet" type="text/css">
+	$gparam[
+		$.tmpl_path[$tmpl_path]
+		$.curpage[$curpage]
+		$.curpage_main[$curpage_main]
+		$.mainpage[$mainpage.id]
+		$.type_h_menu[$form:type_h_menu]
+	]
+	^use[$tmpl_path/p/h_menu.p]
+	^h_menu_t:show[$gparam]
+}
+}
+

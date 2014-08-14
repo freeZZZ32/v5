@@ -1,0 +1,93 @@
+@main[]
+^if($form:type eq 'delete'){^delete_image[$form:name]}
+^if(def $form:file && def $form:name){
+	$name[$form:name]
+	^switch[$name]{
+		^case[bg_1]{^body_bg[$name]}
+		^case[bg_2]{^body_bg[$name]}
+		^case[bg_3]{^body_bg[$name]}
+		^case[body_bg]{^body_bg[$name]}
+		^case[auth]{^cms[$name]}
+		^case[buy]{^cms[$name]}
+		^case[cart]{^cms[$name]}
+		^case[mail]{^cms[$name]}
+		^case[news]{^cms[$name]}
+		^case[search]{^cms[$name]}
+		^case[subcat]{^cms[$name]}
+		^case[tovar]{^cms[$name]}
+		^case[variant]{^cms[$name]}
+		^case[hr]{^hr[$name]}
+		^case[DEFAULT]{}
+	}
+
+	
+}
+
+
+@body_bg[name]
+$path[^find_path[$tmpl_path/i/;$name]]
+^if(-f '$path'){^file:delete[$path]}
+
+$ext[^file:justext[$form:file.name]]
+^form:file.save[binary;$tmpl_path/i/${name}.${ext}]
+$value_insert[url(../i/${name}.${ext})]
+^if($name eq 'body_bg'){
+	$replace_value[^add_selector[/*!body/*background-image/;$tmpl_path/css/tmpl.css;no_add_find]]
+}
+^if($name eq 'bg_1'){
+	$replace_value[^add_selector[/*!bg_1/*background-image/;$tmpl_path/css/tmpl.css;no_add_find]]
+}
+^if($name eq 'bg_2'){
+	$replace_value[^add_selector[/*!bg_2/*background-image/;$tmpl_path/css/tmpl.css;no_add_find]]
+}
+^if($name eq 'bg_3'){
+	$replace_value[^add_selector[/*!bg_3/*background-image/;$tmpl_path/css/tmpl.css;no_add_find]]
+}
+^if(def $replace_value){
+	$f[^file::load[binary;$tmpl_path/css/tmpl.css]] 
+	$tmpl_text[$f.text]
+	$replace_table[^table::create{from   to
+$replace_value	$value_insert}]
+	$tmpl_text[^tmpl_text.replace[$replace_table]]
+	^tmpl_text.save[$tmpl_path/css/tmpl.css]
+	^str.save[$tmpl_path/css/tmpl1.css]
+}
+}
+
+
+
+@cms[name]
+$path[^find_path[$tmpl_path/cms/;$name]]
+^form:file.save[binary;$tmpl_path/cms/${name}.png]
+
+@hr[name]
+$path[^find_path[/manage/i/;$name]]
+^form:file.save[binary;/manage/i/${name}.png]
+
+
+
+
+
+@delete_image[name]
+	^switch[$name]{
+		^case[bg_1]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[bg_2]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[bg_3]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[body_bg]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[auth]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[buy]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[cart]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[mail]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[news]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[search]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[subcat]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[tovar]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[variant]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[hr]{$path[^find_path[/manage/i/;$name]]}
+		^case[DEFAULT]{}
+	}
+	
+	^file:delete[$path]
+	^if(-f '$tmpl_path/i/transparent.png'){
+		^file:copy[$tmpl_path/i/transparent.png;$path]
+	}

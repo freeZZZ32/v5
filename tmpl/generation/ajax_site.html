@@ -1,0 +1,209 @@
+@main[]
+^connect[$connect_string]{
+	$admins[^table::sql{select * from admins where login='$cookie:adm_login' and password='$cookie:adm_password'}]
+	^if($admins){}{
+		$bad_login[error]
+		$cookie:adm_login[]
+		$cookie:adm_password[]
+		$response:location[${servername}/manage/]
+	}
+	^if($bad_login eq error){
+		$response:location[${servername}/manage/]
+	}{
+	
+	
+		^if($form:type eq 'add_width_padding'){^add_width_padding[$form:val_width;$form:str_width;$form:val_padding;$form:str_padding]}
+		^if($form:type eq 'add_background'){^add_background[]}
+		^if($form:type eq 'add_style'){^add_style[]}
+		^if($form:type eq 'add_menu'){^add_menu[]}
+		^if($form:type eq 'add_user'){^add_user[]}
+		
+		
+	}
+}
+
+##########################################################
+#сохранение ширины и отступа сайта
+@add_width_padding[val_width;str_width;val_padding;str_padding]
+^if(def $val_width && def $str_width && def $val_padding && def $str_padding){	
+$width[${val_width}${str_width}]
+$padding[${val_padding}${str_padding}]
+
+	$tmpl_text[^$type_h_menu[$type_h_menu]
+^$type_w_site[$width]
+^$type_padding_site[$padding]]
+	
+	^tmpl_text.save[$tmpl_path/config.cfg]
+}
+
+##########################################################
+#сохранение в css настроек background
+@add_background[]
+
+^if(def $form:background_repeat && def $form:background_position && def $form:background_size && def $form:background_attachment){	
+	$f[^file::load[binary;$tmpl_path/css/tmpl.css]] 
+	$tmpl_text[$f.text]	
+	
+# почему то так --- \/\*!$form:name\/background-size\*\/ --- долго работает
+	^if($form:name eq 'body_bg'){
+		$tmpl_text[^save_css[$form:background_size;\/\*!body\/background-size\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_repeat;\/\*!body\/background-repeat\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_position;\/\*!body\/background-position\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_attachment;\/\*!body\/background-attachment\*\/;$tmpl_text]]
+	}
+	^if($form:name eq 'bg_1'){
+		$selector[$form:name]
+		$tmpl_text[^save_css[$form:background_size;\/\*!bg_1\/background-size\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_repeat;\/\*!bg_1\/background-repeat\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_position;\/\*!bg_1\/background-position\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_attachment;\/\*!bg_1\/background-attachment\*\/;$tmpl_text]]
+	}
+	^if($form:name eq 'bg_2'){
+		$selector[$form:name]
+		$tmpl_text[^save_css[$form:background_size;\/\*!bg_2\/background-size\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_repeat;\/\*!bg_2\/background-repeat\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_position;\/\*!bg_2\/background-position\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_attachment;\/\*!bg_2\/background-attachment\*\/;$tmpl_text]]
+	}
+	^if($form:name eq 'bg_3'){
+		$selector[$form:name]
+		$tmpl_text[^save_css[$form:background_size;\/\*!bg_3\/background-size\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_repeat;\/\*!bg_3\/background-repeat\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_position;\/\*!bg_3\/background-position\*\/;$tmpl_text]]
+		$tmpl_text[^save_css[$form:background_attachment;\/\*!bg_3\/background-attachment\*\/;$tmpl_text]]
+	}
+
+	
+	
+	$tmpl_text[^tmpl_text.trim[]]
+	^tmpl_text.save[$tmpl_path/css/tmpl.css]
+}
+
+
+
+
+##########################################################
+#сохранение в css настроек 
+@add_style[]
+$f[^file::load[binary;$tmpl_path/css/tmpl.css]] 
+$tmpl_text[$f.text]	
+
+^if(def $form:color_body){$tmpl_text[^save_css[#$form:color_body;\/\*!body\/background-color\*\/;$tmpl_text]]}
+^if(def $form:color_a){$tmpl_text[^save_css[#$form:color_a;\/\*!a\/color\*\/;$tmpl_text]]}
+^if(def $form:color_color_marker){$tmpl_text[^save_css[#$form:color_color_marker;\/\*!color_marker\/color\*\/;$tmpl_text]]}
+^if(def $form:color_slogan){$tmpl_text[^save_css[#$form:color_slogan;\/\*!slogan\/background-color\*\/;$tmpl_text]]}
+^if(def $form:color_h1_slogan){$tmpl_text[^save_css[#$form:color_h1_slogan;\/\*!h1_slogan\/color\*\/;$tmpl_text]]}
+^if(def $form:font_size_h1_slogan){$tmpl_text[^save_css[${form:font_size_h1_slogan}px;\/\*!h1_slogan\/font-size\*\/;$tmpl_text]]}
+^if(def $form:color_head_h1){$tmpl_text[^save_css[#$form:color_head_h1;\/\*!head_h1\/color\*\/;$tmpl_text]]}
+^if(def $form:font_size_head_h1){$tmpl_text[^save_css[${form:font_size_head_h1}px;\/\*!head_h1\/font-size\*\/;$tmpl_text]]}
+^if(def $form:color_ph_code){$tmpl_text[^save_css[#$form:color_ph_code;\/\*!ph_code\/color\*\/;$tmpl_text]]}
+^if(def $form:font_size_ph_code){$tmpl_text[^save_css[${form:font_size_ph_code}px;\/\*!ph_code\/font-size\*\/;$tmpl_text]]}
+^if(def $form:color_ph_number){$tmpl_text[^save_css[#$form:color_ph_number;\/\*!ph_number\/color\*\/;$tmpl_text]]}
+^if(def $form:font_size_ph_number){$tmpl_text[^save_css[${form:font_size_ph_number}px;\/\*!ph_number\/font-size\*\/;$tmpl_text]]}
+^if(def $form:color_bottom){$tmpl_text[^save_css[#$form:color_bottom;\/\*!bottom\/color\*\/;$tmpl_text]]}
+^if(def $form:color_alma){$tmpl_text[^save_css[#$form:color_alma;\/\*!alma\/color\*\/;$tmpl_text]]}
+^if(def $form:color_h1){$tmpl_text[^save_css[#$form:color_h1;\/\*!h1\/color\*\/;$tmpl_text]]}
+^if(def $form:font_size_h1){$tmpl_text[^save_css[${form:font_size_h1}px;\/\*!h1\/font-size\*\/;$tmpl_text]]}
+^if(def $form:color_h2){$tmpl_text[^save_css[#$form:color_h2;\/\*!h2\/color\*\/;$tmpl_text]]}
+^if(def $form:font_size_h2){$tmpl_text[^save_css[${form:font_size_h2}px;\/\*!h2\/font-size\*\/;$tmpl_text]]}
+^if(def $form:color_kroshki){$tmpl_text[^save_css[#$form:color_kroshki;\/\*!kroshki\/color\*\/;$tmpl_text]]}
+^if(def $form:font_size_kroshki){$tmpl_text[^save_css[${form:font_size_kroshki}px;\/\*!kroshki\/font-size\*\/;$tmpl_text]]}
+^if(def $form:color_zakladka){$tmpl_text[^save_css[#$form:color_zakladka;\/\*!zakladka\/background-color\*\/;$tmpl_text]]}
+
+
+$tmpl_text[^tmpl_text.trim[]]
+^tmpl_text.save[$tmpl_path/css/tmpl.css]
+
+
+
+##########################################################
+#сохранение в css настроек 
+@add_menu[]
+$f[^file::load[binary;$tmpl_path/css/mnu.css]] 
+$tmpl_text[$f.text]	
+		
+^if(def $form:hmenu_1_li_background_color){$tmpl_text[^save_css[#$form:hmenu_1_li_background_color;\/\*!ul#hmenu_1 li:hover>a\/background-color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_1_li_color){$tmpl_text[^save_css[#$form:hmenu_1_li_color;\/\*!ul#hmenu_1 li:hover>a\/color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_1_a_color){$tmpl_text[^save_css[#$form:hmenu_1_a_color;\/\*!ul#hmenu_1 a\/color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_1_a_background_color){$tmpl_text[^save_css[#$form:hmenu_1_a_background_color;\/\*!ul#hmenu_1 a\/background-color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_2_li_background_color){$tmpl_text[^save_css[#$form:hmenu_2_li_background_color;\/\*!ul#hmenu_2 li:hover>a\/background-color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_2_li_color){$tmpl_text[^save_css[#$form:hmenu_2_li_color;\/\*!ul#hmenu_2 li:hover>a\/color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_2_a_color){$tmpl_text[^save_css[#$form:hmenu_2_a_color;\/\*!ul#hmenu_2 a\/color\*\/;$tmpl_text]]}
+^if(def $form:div_hmenu_2_background_color){$tmpl_text[^save_css[#$form:div_hmenu_2_background_color;\/\*!div#div_hmenu_2\/background-color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_3_li_color){$tmpl_text[^save_css[#$form:hmenu_3_li_color;\/\*!ul#hmenu_3 li.subitem:hover>a\/color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_3_li_hover_color){$tmpl_text[^save_css[#$form:hmenu_3_li_hover_color;\/\*!ul#hmenu_3 li:hover>a\/color\*\/;$tmpl_text]]}
+^if(def $form:hmenu_3_a_color){$tmpl_text[^save_css[#$form:hmenu_3_a_color;\/\*!ul#hmenu_3 a\/color\*\/;$tmpl_text]]}
+
+$tmpl_text[^tmpl_text.trim[]]
+^tmpl_text.save[$tmpl_path/css/mnu.css]
+
+	$tmpl_text[^$type_h_menu[$form:type_h_menu]
+^$type_w_site[$type_w_site]
+^$type_padding_site[$type_padding_site]]
+	^tmpl_text.save[$tmpl_path/config.cfg]
+	<link href="$tmpl_path/css/mnu.css" rel="stylesheet" type="text/css">
+$gparam[
+		$.tmpl_path[$tmpl_path]
+		$.curpage[$curpage]
+		$.curpage_main[$curpage_main]
+		$.mainpage[$mainpage.id]
+		$.type_h_menu[$form:type_h_menu]
+	]
+	^use[$tmpl_path/p/h_menu.p]
+	^h_menu_t:show[$gparam]
+
+
+	
+	
+########################################
+@add_user[]
+$user_text[$form:text_user]
+^user_text.save[$tmpl_path/css/user.css]
+	
+	
+###################################################################
+@save_css[value;regular;tmpl_text]
+$rep[^table::create{from   to
+\	
+}]
+$rep_copy[^table::create{from   to
+\*!	\*!copy\/
+}]
+$selector[^regular.replace[$rep]]
+$regular_copy[^regular.replace[$rep_copy]]
+$insert[:$value^;$selector]
+^tmpl_text.match[(.+)\:(.+)${regular}(.+)][gi]{$tmpl_text[${match.1}${insert} $match.3]}
+$tmpl_text[^pos_find[$regular_copy;$value;$tmpl_text;0]]
+$result[$tmpl_text]
+
+
+
+###################################################################
+# Поиск и замена переменных (copy)
+# Обрезаем текст до первового вхождения селектора
+# Далее рекурсивно ищем остальные попутно заменяя переменные
+###################################################################
+@pos_find[regular;str;tmpl_text;pos][pos_str]
+$rep[^table::create{from   to
+\	
+}]
+$selector[^regular.replace[$rep]]
+^if(def $str && def $tmpl_text){
+	$pos_str(^tmpl_text.pos[$selector]($pos))
+	^if($pos_str!=-1){
+		$pos_str(^eval($pos_str+^selector.length[]+1))
+		$text[^tmpl_text.mid(0;$pos_str)]
+		$text2[^tmpl_text.mid($pos_str)]
+		$value[^text.match[(.+)\:(.+)${regular}(.+)][gi]{$match.2}]
+		$rep[^table::create{from   to
+${value}${selector}	${str}^;${selector}
+}]
+		$text[^text.replace[$rep]]
+		
+		$tmpl_text[${text}${text2}]
+		^pos_find[$regular;$str;$tmpl_text;$pos_str]
+	}{
+		$tmpl_text
+	}
+}
+

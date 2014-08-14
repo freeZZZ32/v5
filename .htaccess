@@ -1,0 +1,304 @@
+
+AddHandler parsed-html html
+Action parsed-html /cgi-bin/parser3.cgi
+
+<Files ~ "\.(p|cfg)$">
+Order allow,deny
+Deny from all
+</Files>
+
+
+DirectoryIndex index.html index.php index.htm
+BrowserMatch "MSIE" brokenvary=1
+BrowserMatch "Mozilla/4.[0-9]{2}" brokenvary=1
+BrowserMatch "Opera" !brokenvary
+SetEnvIf brokenvary 1 force-no-vary
+
+Options -Indexes
+
+RewriteEngine On
+RewriteBase	/
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*index\.html\ HTTP/
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+
+
+
+ErrorDocument 404 /404.html
+
+
+
+RewriteRule	^blok-html/$	index.html?p=25	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=25\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-html/? [R=301,L]
+
+RewriteRule	^blok-parser-code/$	index.html?p=27	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=27\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-parser-code/? [R=301,L]
+
+RewriteRule	^blok-audiozapisi/$	index.html?p=30	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=30\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-audiozapisi/? [R=301,L]
+
+RewriteRule	^blok-bannery/$	index.html?p=50	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=50\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-bannery/? [R=301,L]
+
+RewriteRule	^blok-videogalereya/$	index.html?p=32	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=32\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-videogalereya/? [R=301,L]
+
+RewriteRule	^blok-vyzov-bloka/$	index.html?p=13	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=13\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-vyzov-bloka/? [R=301,L]
+
+RewriteRule	^blok-gostevaya-kniga/$	index.html?p=37	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=37\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-gostevaya-kniga/? [R=301,L]
+
+RewriteRule	^blok-zagolovok-h2/$	index.html?p=38	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=38\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-zagolovok-h2/? [R=301,L]
+
+RewriteRule	^blok-karta-sayta/$	index.html?p=49	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=49\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-karta-sayta/? [R=301,L]
+
+RewriteRule	^blok-katalog-produkcii/$	index.html?p=29	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=29\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-katalog-produkcii/? [R=301,L]
+
+RewriteRule	^blok-katalog-produkcii/grushi/$	index.html?p=29&subcat=0&idc=2410&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/limony/$	index.html?p=29&subcat=0&idc=2411&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/yabloki/$	index.html?p=29&subcat=0&idc=2412&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/arbuzy/$	index.html?p=29&subcat=0&idc=2413&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/dyni/$	index.html?p=29&subcat=0&idc=2414&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/tykvy/$	index.html?p=29&subcat=0&idc=2415&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grusha-zelyonaya/$	index.html?p=29&subcat=0&idc=2417&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grusha-zhyoltaya/$	index.html?p=29&subcat=0&idc=2418&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grusha-rezinovaya/$	index.html?p=29&subcat=0&idc=2419&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grushi-osobo-krupnye-2/$	index.html?p=29&subcat=0&idc=17196&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grushi-osobo-krupnye-2/grusha-krupnaya-2/$	index.html?p=29&subcat=0&idc=17274&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grushi-pomelche/$	index.html?p=29&subcat=0&idc=17197&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grushi-osobo-krupnye-2/grusha-krupnaya/$	index.html?p=29&subcat=0&idc=17198&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grushi-pomelche/melkaya-kitayskaya-grusha/$	index.html?p=29&subcat=0&idc=17199&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/tykvy/tykva-zorka/$	index.html?p=29&subcat=0&idc=17184&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/tykvy/tykva-volzhskaya-seraya/$	index.html?p=29&subcat=0&idc=17182&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/tykvy/tykva-rossiyanka/$	index.html?p=29&subcat=0&idc=17183&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/tykvy/tykva-stofuntovyy/$	index.html?p=29&subcat=0&idc=17181&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/dyni/dynya-galiley/$	index.html?p=29&subcat=0&idc=17179&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/dyni/dynya-sharante/$	index.html?p=29&subcat=0&idc=17180&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/dyni/ananasovaya-dynya/$	index.html?p=29&subcat=0&idc=17178&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/arbuzy/ogonek/$	index.html?p=29&subcat=0&idc=17177&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/arbuzy/astrahanskiy-arbuz/$	index.html?p=29&subcat=0&idc=17176&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/arbuzy/krimson-rubi/$	index.html?p=29&subcat=0&idc=17175&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/yabloki/red-delicious-red-delishes/$	index.html?p=29&subcat=0&idc=17174&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/yabloki/granny-smith---grenni-smit/$	index.html?p=29&subcat=0&idc=17173&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/limony/novogruzinskiy-limon/$	index.html?p=29&subcat=0&idc=17170&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/yabloki/aydared/$	index.html?p=29&subcat=0&idc=17172&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/yabloki/antonovka/$	index.html?p=29&subcat=0&idc=17171&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/limony/pavlovskiy-limon/$	index.html?p=29&subcat=0&idc=17168&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/limony/limon-meyra/$	index.html?p=29&subcat=0&idc=17169&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grusha-zelyonaya/grusha-zelyonaya-1/$	index.html?p=29&subcat=0&idc=17211&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grusha-zelyonaya/grusha-zelyonaya-2/$	index.html?p=29&subcat=0&idc=17212&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/grushi/grusha-zelyonaya/grusha-zelyonaya-3/$	index.html?p=29&subcat=0&idc=17213&child=1 [L,QSA]
+RewriteRule	^blok-katalog-produkcii/limony/paavarvayrvayrvayr/$	index.html?p=29&subcat=0&idc=17253&child=1 [L,QSA]
+RewriteRule	^blok-novostnaya-lenta/$	index.html?p=33	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=33\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-novostnaya-lenta/? [R=301,L]
+
+RewriteRule	^blok-novostnaya-lenta/novost-pervaya/$	index.html?p=33&subcat=0&idn=7&child=1 [L,QSA]
+RewriteRule	^blok-novostnaya-lenta/vtoraya-novost/$	index.html?p=33&subcat=0&idn=8&child=1 [L,QSA]
+RewriteRule	^blok-obratnyy-otschet/$	index.html?p=52	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=52\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-obratnyy-otschet/? [R=301,L]
+
+RewriteRule	^blok-opros/$	index.html?p=48	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=48\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-opros/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/podrazdel-tretego-urovnya/$	index.html?p=46	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=46\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/vtoroy-podrazdel/podrazdel-tretego-urovnya/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/pervyy-podrazdel/$	index.html?p=41	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=41\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/pervyy-podrazdel/? [R=301,L]
+
+RewriteRule	^blok-otzyvy/$	index.html?p=51	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=51\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-otzyvy/? [R=301,L]
+
+RewriteRule	^blok-podrazdely-stranicy/$	index.html?p=35	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=35\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-podrazdely-stranicy/? [R=301,L]
+
+RewriteRule	^blok-podrazdely-stranicy/podrazdel-1/$	index.html?p=35&subcat=4&child=1 [L,QSA]
+RewriteRule	^blok-podrazdely-stranicy/podrazdel/$	index.html?p=35&subcat=5&child=1 [L,QSA]
+RewriteRule	^blok-slayd-shou/$	index.html?p=7	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=7\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-slayd-shou/? [R=301,L]
+
+RewriteRule	^blok-slayder-katalog/$	index.html?p=58	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=58\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-slayder-katalog/? [R=301,L]
+
+RewriteRule	^blok-tekst/$	index.html?p=22	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=22\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-tekst/? [R=301,L]
+
+RewriteRule	^blok-forma/$	index.html?p=24	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=24\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-forma/? [R=301,L]
+
+RewriteRule	^blok-fotogalereya/$	index.html?p=23	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=23\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-fotogalereya/? [R=301,L]
+
+RewriteRule	^blok-nezhvizhimost/$	index.html?p=59	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=59\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/blok-nezhvizhimost/? [R=301,L]
+
+RewriteRule	^blok-nezhvizhimost/prodaetsya-taunhaus/$	index.html?p=59&subcat=0&idr=77&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-uluchshennoy-planirovki/$	index.html?p=59&subcat=0&idr=25&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/kupit-uchastok/$	index.html?p=59&subcat=0&idr=4&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/snyat-dom/$	index.html?p=59&subcat=0&idr=6&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/snyat-komnatu-2/$	index.html?p=59&subcat=0&idr=7&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-hrushchevka-2/$	index.html?p=59&subcat=0&idr=26&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-sovremennoy-planirovki/$	index.html?p=59&subcat=0&idr=27&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/3-komnatnaya-kvartira-sovremennoy-planirovki/$	index.html?p=59&subcat=0&idr=10&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-brezhnevka/$	index.html?p=59&subcat=0&idr=11&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-stalinka/$	index.html?p=59&subcat=0&idr=12&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malosemeyka/$	index.html?p=59&subcat=0&idr=13&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-v-obshchezhitii/$	index.html?p=59&subcat=0&idr=15&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-v-obshchezhitii-2/$	index.html?p=59&subcat=0&idr=16&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-sovremennoy-planirovki/$	index.html?p=59&subcat=0&idr=17&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-v-obshchezhitii-3/$	index.html?p=59&subcat=0&idr=18&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/3-komnatnaya-kvartira-stalinka/$	index.html?p=59&subcat=0&idr=19&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/3-komnatnaya-kvartira-brezhnevka/$	index.html?p=59&subcat=0&idr=20&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-hrushchevka/$	index.html?p=59&subcat=0&idr=21&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/3-komnatnaya-kvartira-sovremennoy-planirovki-2/$	index.html?p=59&subcat=0&idr=22&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-sovremennoy-planirovki-2/$	index.html?p=59&subcat=0&idr=23&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malosemeyka-2/$	index.html?p=59&subcat=0&idr=24&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2/$	index.html?p=59&subcat=0&idr=28&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-individualnoy-planirovki/$	index.html?p=59&subcat=0&idr=29&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malosemeyka-3/$	index.html?p=59&subcat=0&idr=30&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malogabaritka/$	index.html?p=59&subcat=0&idr=31&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malosemeyka-4/$	index.html?p=59&subcat=0&idr=32&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malosemeyka-5/$	index.html?p=59&subcat=0&idr=33&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malosemeyka-6/$	index.html?p=59&subcat=0&idr=34&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-malosemeyka-7/$	index.html?p=59&subcat=0&idr=35&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/3-komnatnaya-kvartira-kommunalka/$	index.html?p=59&subcat=0&idr=36&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-hrushchevka/$	index.html?p=59&subcat=0&idr=37&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-hrushchevka-2/$	index.html?p=59&subcat=0&idr=38&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-hrushchevka-3/$	index.html?p=59&subcat=0&idr=39&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-hrushchevka-3/$	index.html?p=59&subcat=0&idr=40&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-brezhnevka-2/$	index.html?p=59&subcat=0&idr=41&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-povyshennoy-komfortnosti/$	index.html?p=59&subcat=0&idr=42&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-brezhnevka/$	index.html?p=59&subcat=0&idr=43&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-hrushchevka-4/$	index.html?p=59&subcat=0&idr=44&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-kommunalka/$	index.html?p=59&subcat=0&idr=45&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-hrushchevka-4/$	index.html?p=59&subcat=0&idr=46&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-staryy-fond/$	index.html?p=59&subcat=0&idr=47&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-staryy-fond/$	index.html?p=59&subcat=0&idr=48&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-staryy-fond-2/$	index.html?p=59&subcat=0&idr=49&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-obshchezhitie/$	index.html?p=59&subcat=0&idr=50&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-v-obshchezhitii-4/$	index.html?p=59&subcat=0&idr=51&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-v-obshchezhitii-5/$	index.html?p=59&subcat=0&idr=52&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-hrushchevka-5/$	index.html?p=59&subcat=0&idr=53&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-povyshennoy-komfortnosti/$	index.html?p=59&subcat=0&idr=54&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-sovremennoy-planirovki-2/$	index.html?p=59&subcat=0&idr=55&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-sovremennoy-planirovki-3/$	index.html?p=59&subcat=0&idr=56&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/3-komnatnaya-kvartira-sovremennoy-planirovki-3/$	index.html?p=59&subcat=0&idr=57&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/3-komnatnaya-kvartira-uluchshennoy-planirovki/$	index.html?p=59&subcat=0&idr=58&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-brezhnevka-3/$	index.html?p=59&subcat=0&idr=59&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-uluchshennoy-planirovki/$	index.html?p=59&subcat=0&idr=60&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-malosemeyka/$	index.html?p=59&subcat=0&idr=61&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-hrushchevka-6/$	index.html?p=59&subcat=0&idr=62&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-brezhnevka-4/$	index.html?p=59&subcat=0&idr=63&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/1-komnatnaya-kvartira-uluchshennoy-planirovki-2/$	index.html?p=59&subcat=0&idr=64&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/2-komnatnaya-kvartira-uluchshennoy-planirovki-2/$	index.html?p=59&subcat=0&idr=65&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/komnata-v-obshchezhitii-6/$	index.html?p=59&subcat=0&idr=66&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-2-etazhnyy-dom/$	index.html?p=59&subcat=0&idr=69&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-1-etazhnyy-dom-2/$	index.html?p=59&subcat=0&idr=68&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-derevyannyy-dom/$	index.html?p=59&subcat=0&idr=70&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-2-etazhnyy-dom-2/$	index.html?p=59&subcat=0&idr=71&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-1-etazhnyy-dom/$	index.html?p=59&subcat=0&idr=72&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-zemelnyy-uchastok/$	index.html?p=59&subcat=0&idr=73&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-zemelnyy-uchastok-2/$	index.html?p=59&subcat=0&idr=75&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-zemelnyy-uchastok-3/$	index.html?p=59&subcat=0&idr=76&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-dachnyy-dom/$	index.html?p=59&subcat=0&idr=78&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/prodaetsya-dom/$	index.html?p=59&subcat=0&idr=79&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/sdaetsya-2-komnatnaya-kvartira/$	index.html?p=59&subcat=0&idr=80&child=1 [L,QSA]
+RewriteRule	^blok-nezhvizhimost/sdaetsya-2-komnatnaya-kvartira-2/$	index.html?p=59&subcat=0&idr=81&child=1 [L,QSA]
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/vtoroy-podrazdel-tretego-urovnya/$	index.html?p=47	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=47\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/vtoroy-podrazdel/vtoroy-podrazdel-tretego-urovnya/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/$	index.html?p=42	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=42\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/vtoroy-podrazdel/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/tretiy-podrazdel/$	index.html?p=43	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=43\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/tretiy-podrazdel/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/podrazdel/$	index.html?p=56	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=56\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/vtoroy-podrazdel/podrazdel/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/testovyy-razdel/$	index.html?p=60	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=60\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/vtoroy-podrazdel/testovyy-razdel/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/testovyy-razdel/kakoe-nibud-platice/$	index.html?p=60&subcat=0&idc=17202&child=1 [L,QSA]
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/testovyy-razdel/botinki/$	index.html?p=60&subcat=0&idc=17207&child=1 [L,QSA]
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/testovyy-razdel/kakoe-nibud-platice/krasnenkoe-platice/$	index.html?p=60&subcat=0&idc=17205&child=1 [L,QSA]
+RewriteRule	^vypadayushchee-menyu/vtoroy-podrazdel/testovyy-razdel/kakoe-nibud-platice/empty/$	index.html?p=60&subcat=0&idc=17208&child=1 [L,QSA]
+RewriteRule	^/456/$	index.html?p=54	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=54\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}//456/? [R=301,L]
+
+RewriteRule	^main/$	index.html?p=1	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=1\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/main/? [R=301,L]
+
+RewriteRule	^main/bytovaya-tehnika/$	index.html?p=1&subcat=0&idc=17164&child=1 [L,QSA]
+RewriteRule	^main/bytovaya-tehnika/televizory/$	index.html?p=1&subcat=0&idc=17165&child=1 [L,QSA]
+RewriteRule	^main/bytovaya-tehnika/televizory/lg-asd-400/$	index.html?p=1&subcat=0&idc=17166&child=1 [L,QSA]
+RewriteRule	^main/bytovaya-tehnika/televizory/lg-asd-500/$	index.html?p=1&subcat=0&idc=17167&child=1 [L,QSA]
+RewriteRule	^main/detskie-tovary/velosiped-stels-pilot-140-razmer-kolesa-16/$	index.html?p=1&subcat=0&idc=17195&child=1 [L,QSA]
+RewriteRule	^main/detskie-tovary/mashinka-welly-bmw-x6/$	index.html?p=1&subcat=0&idc=17194&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/tekstil/podushka-50-h-70-sm-s-bambukom-dargez-bombey/$	index.html?p=1&subcat=0&idc=17192&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/tovary-dlya-kuhni/soteynik-24-sm-flonal-cv3241/$	index.html?p=1&subcat=0&idc=17190&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/tekstil/polotence-40-h-60-sm-togas-keln/$	index.html?p=1&subcat=0&idc=17191&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/tovary-dlya-kuhni/emalirovannaya-kastryulya-2-l/$	index.html?p=1&subcat=0&idc=17193&child=1 [L,QSA]
+RewriteRule	^main/detskie-tovary/$	index.html?p=1&subcat=0&idc=17189&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/$	index.html?p=1&subcat=0&idc=17185&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/tovary-dlya-kuhni/$	index.html?p=1&subcat=0&idc=17186&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/tekstil/$	index.html?p=1&subcat=0&idc=17187&child=1 [L,QSA]
+RewriteRule	^main/tovary-dlya-doma/tovary-dlya-kuhni/nabor-posudy-iz-4-predmetov/$	index.html?p=1&subcat=0&idc=17188&child=1 [L,QSA]
+RewriteRule	^main/haotichnye-fotki/$	index.html?p=1&subcat=3&child=1 [L,QSA]
+RewriteRule	^main/zagolovok-novosti-1/$	index.html?p=1&subcat=0&idn=4&child=1 [L,QSA]
+RewriteRule	^main/eto-dlinnyy-zagolovok-dlinnyy-zagolovok-dlinnyy-zagolovok--ochen-dlinnyy-zagolovok-/$	index.html?p=1&subcat=0&idn=5&child=1 [L,QSA]
+RewriteRule	^main/tretya-zapis/$	index.html?p=1&subcat=0&idn=6&child=1 [L,QSA]
+RewriteRule	^nastroyki/$	index.html?p=16	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=16\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/nastroyki/? [R=301,L]
+
+RewriteRule	^novosti/$	index.html?p=9	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=9\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/novosti/? [R=301,L]
+
+RewriteRule	^katalog/$	index.html?p=10	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=10\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/katalog/? [R=301,L]
+
+RewriteRule	^vypadayushchee-menyu/$	index.html?p=40	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=40\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/vypadayushchee-menyu/? [R=301,L]
+
+RewriteRule	^kontakty/$	index.html?p=8	[L,QSA]
+	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /\?p=8\ HTTP/
+	RewriteRule ^$ http://%{SERVER_NAME}/kontakty/? [R=301,L]

@@ -1,0 +1,45 @@
+@main[]
+^if(def $form:name){
+	$name[$form:name]
+	^switch[$name]{
+		^case[bg_1]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[bg_2]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[bg_3]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[body_bg]{$path[^find_path[$tmpl_path/i/;$name]]}
+		^case[auth]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[buy]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[cart]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[mail]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[news]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[search]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[subcat]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[tovar]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[variant]{$path[^find_path[$tmpl_path/cms/;$name]]}
+		^case[hr]{$path[^find_path[/manage/i/;$name]]}
+		^case[DEFAULT]{}
+	}
+	
+^use[/class/NConvert.p]
+$oImg[^NConvert::create[
+	$.sScriptPath[/cgi-bin/]
+	$.sScriptName[nconvert]
+	^if(def $sFormat){$.sFormat[$sFormat]}
+]]
+
+$width_img[100%]
+$height_img[auto]
+$imginfo[^oImg.info[$path]]
+^if($imginfo.iWidth< 250 && $imginfo.iHeight< 250){
+	$width_img[${imginfo.iWidth}px]
+	$height_img[${imginfo.iHeight}px]
+}
+^if($imginfo.iHeight>400 && $imginfo.iWidth<265){
+	$width_img[${imginfo.iWidth}px]
+	$height_img[400px]
+}
+^if($name eq 'hr'){
+	$width_img[110px]
+}
+	<img  src="$path" style="width:$width_img^;height:$height_img^;">
+	<div class="delete_img" style="margin-top: -8px^;left:$width_img^;margin-left: -8px^;" onclick="delete_img('$name')">x</div>|${path}?rand=^math:random(1000)
+}

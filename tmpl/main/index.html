@@ -1,0 +1,73 @@
+﻿
+<a href="#" class="slogan kroshki move_up">Наверх</a>
+<div class="fixed_menu">Тут фиксированное меню вкладок</div>
+<div class="container">
+#^newfeedback[]
+#^newauth[]
+#^newcart[]
+#^newsearch[]
+
+	<div class="header">Тут шапка большая такая</div>
+	<div class="hmenu">Тут менюха</div>
+	<div class="top_block">Верхний блок</div>
+	<div class="body_wrap">
+		<div class="left_block">Левый блок</div>
+		<div class="content">
+			%HEADERPAGE%
+			^text[]
+		</div>
+		<div class="right_block"></div>
+	</div>
+#^g_head[]	
+#^if($gs_tm){^h_menu[]}
+#^if($gs_tb){^g_top_part[]}
+
+#^if($gs_cattov.value ==1){	
+#^if(def $gs_cattovhead){$gs_cattovhead}
+#^c_menu[]
+#}
+		
+			
+#^if($gs_lm){		
+#^v_menu[]
+#}
+
+
+#^if($gs_lb){
+#^g_left_part[]
+#}
+
+
+#^if($gs_news > 0){
+#			^show_last_news[]
+#}
+
+#^if($gs_otzyv > 0){
+#			^show_last_otzyv[]
+#}
+
+#^if($gs_rb){
+#^g_right_part[]
+#}
+
+</div>
+<div class="footer">
+
+<div></div>
+
+#<span class="bottom">&copy; ^if($dateyear == $datemade){$dateyear}{${datemade} &ndash^; ${dateyear}} $gs.name</span><br>
+
+
+#^use[/class/text_extended.p]
+#$mod_text_extended[^text_extended::init[2;text]]
+#^mod_text_extended.show[]
+
+
+#<div class="alma"><a href="http://www.alma-com.ru/" class="alma">Создание сайта</a> &ndash^; компания "Альма", ${datemade}</div>
+
+
+
+
+
+
+</div>

@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/v5.ns32.ru/webstat"
+AuthUserFile /var/www/a3/data/etc/19374770.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>

@@ -1,0 +1,71 @@
+html,body {
+			margin: 0px;
+			padding: 0px;
+			font-family: Tahoma, Verdana, Geneva, Arial;
+			height:100%;
+		}
+td{
+			font-size:13px;
+			color:#333333;
+}
+ol, ul{
+padding-top:1px;
+padding-bottom:1px;
+margin-top:3px;
+margin-bottom:5px;
+}
+
+p{
+			font-size:13px;
+			color:#333333;
+			padding: 5px 0px 5px 0px;
+			margin: 0px;
+			line-height:140%;
+}
+
+@font-face {
+  font-family: 'Istok Web';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Istok Web Bold'), local('IstokWeb-Bold'), url('http://themes.googleusercontent.com/static/fonts/istokweb/v4/2koEo4AKFSvK4B52O_Mwap1r3JsPcQLi8jytr04NNhU.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Marmelad';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Marmelad'), local('Marmelad-Regular'), url('http://themes.googleusercontent.com/static/fonts/marmelad/v3/loaoNQJAXNuUjzmAQ_DJ9_esZW2xOQ-xsNqO47m55DA.woff') format('woff');
+}
+@font-face {
+  font-family: 'Cuprum';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Cuprum'), url('http://themes.googleusercontent.com/static/fonts/cuprum/v3/wHBEZCjwNI3HN2fD1RQJgw.woff') format('woff');
+}
+
+
+		
+table.table_site {
+border-collapse: collapse;
+
+}
+
+table.table_site th, table.table_site thead td {
+background-color: #e8e8e8;
+color: #333333;
+font-weight: bold;
+font-family:Verdana; 
+font-size: 12px;
+padding: 5px 10px;
+border: 0px solid #999999;
+text-align: center;
+}
+
+table.table_site td {
+padding: 5px;
+border: 1px solid #999999;
+}
+
+a.tip{
+
+}

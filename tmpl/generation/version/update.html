@@ -1,0 +1,118 @@
+@text[]
+# в settings добавить (Ўаблон по умолчанию	/tmpl/main	tmpl	0	tmpl	text	0	1)
+# в /tmpl/main/ добавить файла ajax.html (^text[])
+# в auto.p config2.p переименовать в config.cfg
+# в  auto.p подключить user.css
+# в  auto.p убрать transfer.js
+# в /tmpl/main/index.html вставить класс type_w_site
+# в /tmpl/main/index.html добавить 3 div class="bg_1" class="bg_2" class="bg_3"
+# /tmpl/main/i/ добавить прозрачных картинок bg_1.png bg_2.png bg_3.png
+# tmpl/main/css/tmpl.css добавить bg_1 bg_2 bg_3
+#.bg_1{
+#	background-image: url(../i/bg_1.png);
+#	margin:0;
+#	background-repeat:no-repeat;
+#	background-position:top center;
+#	background-attachment: fixed;
+#	width:100%;
+#	height:auto;
+#}
+# в config удалить tmpl
+# в auto.p добавить
+####################################################
+# include_tmpl_path
+# определ€ет $tmpl_path
+####################################################
+#@include_tmpl_path[]
+#$tmpl_path_table[^table::sql{select value from settings where type='tmpl'}]
+#	^if(def $cookie:tmpl){
+#	^if(-f "${cookie:tmpl}/index.html"){
+#		$tmpl_path[${cookie:tmpl}]
+#		}{
+#			^if(def $tmpl_path_table){
+#				$tmpl_path[$tmpl_path_table.value]
+#			}{
+#				$tmpl_path[/tmpl/main]
+#			}
+#		}
+#	}{
+#		^if(def $tmpl_path_table){
+#			$tmpl_path[$tmpl_path_table.value]
+#		}{
+#			$tmpl_path[/tmpl/main]
+#		}
+#	}
+#$result[$tmpl_path]
+#
+# ^include[/config.p] перенести ниже метода $tmpl_path[^include_tmpl_path[]] (вызывать в ^connect[$connect_string]{)
+#$tmpl_path[^include_tmpl_path[]]
+#^include[$tmpl_path/config.cfg]
+# в bcatalog.p ^include[/config.p] заменить на $tmpl_path[^include_tmpl_path[]]
+
+
+
+################### config2.p переименовывает  config.cfg #######################################################
+################### в mnu.css добавл€ет к ссылке transition #######################################################
+$list[^file:list[/tmpl/]]
+^if(def $list){
+	^list.menu{
+		^if(-d '/tmpl/$list.name'){
+			$list2[^file:list[/tmpl/$list.name]]
+			^if(def $list2){
+			
+				^if(!-f '/tmpl/$list.name/css/user.css'){
+					$user_text[]
+					^user_text.save[/tmpl/$list.name/css/user.css]
+				}
+				^if(-f '/tmpl/$list.name/css/tmpl.css'){
+					$temp[^add_selector[/*!ul#hmenu_1 a/transition*/;/tmpl/$list.name/css/mnu.css;no_add_find]]
+					$temp[^add_selector[/*!ul#hmenu_2 a/transition*/;/tmpl/$list.name/css/mnu.css;no_add_find]]
+					$temp[^add_selector[/*!ul#hmenu_3 a/transition*/;/tmpl/$list.name/css/mnu.css;no_add_find]]
+#					¬ыставл€ем copy
+				
+					$temp[^add_selector[/*!h1_slogan/line-height*/;/tmpl/$list.name/css/tmpl.css;;/*copy/h1_slogan/font-size*/]]
+					$temp[^add_selector[/*!tipa_h1/font-size*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h1/font-size*/]]
+					$temp[^add_selector[/*!tipa_h1/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h1/color*/]]
+					$temp[^add_selector[/*!tipa_h2/font-size*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h2/font-size*/]]
+					$temp[^add_selector[/*!tipa_h2/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h2/color*/]]
+					$temp[^add_selector[/*!tipa_h3/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h1/color*/]]
+					$temp[^add_selector[/*!tipa_h3np/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h1/color*/]]
+					$temp[^add_selector[/*!tipa_h4/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h2/color*/]]
+					$temp[^add_selector[/*!tipa_h4np/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h2/color*/]]
+					$temp[^add_selector[/*!h3/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h1/color*/]]
+					$temp[^add_selector[/*!h5/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h1/color*/]]
+					$temp[^add_selector[/*!h7/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h1/color*/]]
+					$temp[^add_selector[/*!h4/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h2/color*/]]
+					$temp[^add_selector[/*!h6/color*/;/tmpl/$list.name/css/tmpl.css;;/*!copy/h2/color*/]]	
+	
+					$temp[^add_selector[/*!ul#hmenu_1 li>a.atop_link/background-color*/;/tmpl/$list.name/css/mnu.css;;/*!copy/ul#hmenu_1 li:hover>a/background-color*/]]
+					$temp[^add_selector[/*!ul#hmenu_1 li.subitem:hover>a/color*/;/tmpl/$list.name/css/mnu.css;;/*!copy/ul#hmenu_1 li:hover>a/background-color*/]]
+					$temp[^add_selector[/*!ul#hmenu_1 li>a.atop_link/color*/;/tmpl/$list.name/css/mnu.css;;/*!copy/ul#hmenu_1 li:hover>a/color*/]]
+					$temp[^add_selector[/*!ul#hmenu_2 li>a.atop_link/background-color*/;/tmpl/$list.name/css/mnu.css;;/*!copy/ul#hmenu_2 li:hover>a/background-color*/]]
+					$temp[^add_selector[/*!ul#hmenu_2 li.subitem:hover>a/color*/;/tmpl/$list.name/css/mnu.css;;/*!copy/ul#hmenu_2 li:hover>a/background-color*/]]
+					$temp[^add_selector[/*!ul#hmenu_2 li>a.atop_link/color*/;/tmpl/$list.name/css/mnu.css;;/*!copy/ul#hmenu_2 li:hover>a/color*/]]	
+					$temp[^add_selector[/*!ul#hmenu_3 li>a.atop_link/color*/;/tmpl/$list.name/css/mnu.css;;/*!copy/ul#hmenu_3 li:hover>a/color*/]]
+
+					
+
+				}
+				^list2.menu{
+					^if($list2.name eq 'config2.p'){
+						^file:move[/tmpl/$list.name/config2.p;/tmpl/$list.name/config.cfg] 
+					}
+				}
+			}
+		}
+	}
+}
+########################################################################################################################
+
+
+
+^if($form:version){
+	$version[$form:version]
+	^version.save[version.cfg]
+}
+
+
+

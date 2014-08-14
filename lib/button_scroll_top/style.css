@@ -1,0 +1,17 @@
+a.move_up {
+	position: fixed;
+	bottom: 0;
+	display: none;
+	border-radius: 0 6px 6px 0;
+	text-align: center;
+	text-decoration: none;
+	padding: 12px 45px 12px;
+	opacity:0.9;
+	filter: alpha(opacity=90);
+	z-index: 99;
+	left: 0;
+}
+a.move_up:hover {
+	color: #fff;
+	background: #999999;
+} 
